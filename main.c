@@ -98,3 +98,30 @@ void CalcularPromedioGrupo(int calificaciones[][NumeroProgresos]) {
         printf("Promedio del Grupo para el Progreso %d: %.2f\n", j + 1, promedio);
     }
 }
+
+void EncontrarMejorEstudiante(int calificaciones[][NumeroProgresos]) {
+    char* nombres[NumeroAlumnos] = {"Mario", "Juan", "Ana", "Carlos", "Laura", "Diego", "Luis", "Sofia", "Pedro", "Elena",
+                                     "Gabriel", "Isabel", "Mateo", "Valeria", "Fernando", "Lucia", "Alejandro", "Camila",
+                                     "Javier", "Mariana", "Daniel", "Monica", "Ricardo"};
+
+    float promedios[NumeroAlumnos];
+
+    // Calcular promedio final de cada estudiante
+    for (int i = 0; i < NumeroAlumnos; i++) {
+        promedios[i] = 0.0;
+        for (int j = 0; j < NumeroProgresos; j++) {
+            promedios[i] += calificaciones[i][j];
+        }
+        promedios[i] /= NumeroProgresos;
+    }
+
+    // Encontrar al mejor estudiante
+    int mejorEstudiante = 0;
+    for (int i = 1; i < NumeroAlumnos; i++) {
+        if (promedios[i] > promedios[mejorEstudiante]) {
+            mejorEstudiante = i;
+        }
+    }
+
+    printf("Mejor Estudiante: %s (PF: %.2f)\n", nombres[mejorEstudiante], promedios[mejorEstudiante]);
+}
