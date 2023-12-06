@@ -58,3 +58,43 @@ int main()
 
     return 0;
 }
+
+void GenerarNotasAleatorias(int calificaciones[][NumeroProgresos]) {
+    for (int i = 0; i < NumeroAlumnos; i++) {
+        for (int j = 0; j < NumeroProgresos; j++) {
+            calificaciones[i][j] = rand() % 10 + 1; // Notas aleatorias de 1 a 10
+        }
+    }
+}
+
+void MostrarNotasAlumnos(int calificaciones[][NumeroProgresos]) {
+    char* nombres[NumeroAlumnos] = {"Mario", "Juan", "Ana", "Carlos", "Laura", "Diego", "Luis", "Sofia", "Pedro", "Elena",
+                                     "Gabriel", "Isabel", "Mateo", "Valeria", "Fernando", "Lucia", "Alejandro", "Camila",
+                                     "Javier", "Mariana", "Daniel", "Monica", "Ricardo"};
+
+    // Mostrar notas de todos los alumnos
+    for (int i = 0; i < NumeroAlumnos; i++) {
+        printf("\n%d. %s\n", i + 1, nombres[i]);
+        float promedioFinal = 0.0;
+
+        for (int j = 0; j < NumeroProgresos; j++) {
+            printf("P%d: %d/10\n", j + 1, calificaciones[i][j]);
+            promedioFinal += calificaciones[i][j];
+        }
+
+        promedioFinal /= NumeroProgresos;
+        printf("PF: %.2f\n", promedioFinal);
+    }
+}
+
+void CalcularPromedioGrupo(int calificaciones[][NumeroProgresos]) {
+    // Mostrar nota promedio del grupo para cada progreso
+    for (int j = 0; j < NumeroProgresos; j++) {
+        int suma = 0;
+        for (int i = 0; i < NumeroAlumnos; i++) {
+            suma += calificaciones[i][j];
+        }
+        float promedio = (float)suma / NumeroAlumnos;
+        printf("Promedio del Grupo para el Progreso %d: %.2f\n", j + 1, promedio);
+    }
+}
